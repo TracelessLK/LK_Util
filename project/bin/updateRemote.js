@@ -9,7 +9,7 @@ const repoMapObj = {
   'LK_M': 'https://github.com/TracelessLK/LK-M.git',
   'LK-C': 'https://github.com/TracelessLK/LK-C.git',
 }
-console.log('version: 0.0.4')
+console.log('version: 0.0.5')
 start()
 
 function start() {
@@ -36,6 +36,7 @@ function start() {
         if(fs.existsSync(LK_C_path)) {
           console.log('working on LK-C in submodule');
             [
+              'git remote remove origin-deprecated',
             'git remote rename origin origin-deprecated',
               `git remote add origin ${repoMapObj['LK-C']}`,
               'git fetch --all',
@@ -66,6 +67,7 @@ function checkGitRepo(rootDir) {
 
 function getCmdStr(gitUrl) {
   return `
+   git remote remove origin-deprecated
   git remote rename origin origin-deprecated
 git remote add origin ${gitUrl}
 git remote remove origin-deprecated
