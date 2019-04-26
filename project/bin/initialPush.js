@@ -38,7 +38,7 @@ function start() {
           [
             'git remote rename origin origin-deprecated',
             `git remote add origin ${repoMapObj['LK-C']}`,
-            'git pull origin',
+            'git pull',
             'git branch -u origin/dev dev',
             'git checkout dev',
             'git remote remove origin-deprecated'
