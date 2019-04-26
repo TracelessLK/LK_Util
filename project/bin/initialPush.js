@@ -8,7 +8,7 @@ const repoMapObj = {
   'LK-M': 'https://github.com/TracelessLK/LK-M.git',
   'LK-C': 'https://github.com/TracelessLK/LK-C.git',
 }
-
+console.log('version: 0.0.1')
 start()
 
 function start() {
@@ -29,15 +29,33 @@ function start() {
         .map(ele => ele.trim())
         .filter(ele => Boolean(ele))
         .forEach(runCmdSync)
+      // process LK-C in submodule
+      if (['LK-M', 'LK-D'].includes(rootFolder)) {
+        const LK_C_path = path.resolve(cwd, 'submodule/LK-C')
+        if(fs.existsSync(LK_C_path)) {
+          [
+            'git remote rename origin origin-deprecated',
+            `git remote add origin ${repoMapObj['LK-C']}`,
+            'git branch -u origin/dev dev',
+            'git checkout dev',
+            'git pull',
+            'git remote remove origin-deprecated'
+          ].forEach(ele => {
+            runCmdSync(ele, {
+              cwd: LK_C_path
+            })
+          })
+        }
+      }
       console.log('initial push successfully ')
     }
   }
 }
 
 
-function runCmdSync(cmd) {
+function runCmdSync(cmd, option={}) {
   console.log(cmd)
-  childProcess.execSync(cmd)
+  childProcess.execSync(cmd, option)
 }
 
 function checkGitRepo(rootDir) {
