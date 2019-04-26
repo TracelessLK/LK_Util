@@ -9,7 +9,7 @@ const repoMapObj = {
   'LK_M': 'https://github.com/TracelessLK/LK-M.git',
   'LK-C': 'https://github.com/TracelessLK/LK-C.git',
 }
-console.log('version: 0.0.5')
+console.log('version: 0.0.6')
 start()
 
 function start() {
@@ -26,6 +26,11 @@ function start() {
       if (['LK-M', 'LK_M'].includes(rootFolder)){
         runCmdSync(`git checkout dev_z && git branch -m dev`)
       }
+      try {
+        runCmdSync('git remote remove origin origin-deprecated')
+      }catch(err){
+
+      }
       getCmdStr(repoMapObj[rootFolder]).split('\n')
         .map(ele => ele.trim())
         .filter(ele => Boolean(ele))
@@ -35,8 +40,15 @@ function start() {
         const LK_C_path = path.resolve(cwd, 'submodule/LK-C')
         if(fs.existsSync(LK_C_path)) {
           console.log('working on LK-C in submodule');
+          const option = {
+            cwd: LK_C_path
+          }
+          try {
+            runCmdSync('git remote remove origin origin-deprecated', option)
+          }catch(err){
+
+          }
             [
-              'git remote remove origin-deprecated',
             'git remote rename origin origin-deprecated',
               `git remote add origin ${repoMapObj['LK-C']}`,
               'git fetch --all',
@@ -44,9 +56,7 @@ function start() {
               'git checkout dev',
               'git remote remove origin-deprecated'
             ].forEach(ele => {
-            runCmdSync(ele, {
-              cwd: LK_C_path
-            })
+            runCmdSync(ele, option)
           })
         }
       }
@@ -67,7 +77,6 @@ function checkGitRepo(rootDir) {
 
 function getCmdStr(gitUrl) {
   return `
-   git remote remove origin-deprecated
   git remote rename origin origin-deprecated
 git remote add origin ${gitUrl}
 git remote remove origin-deprecated
