@@ -25,7 +25,10 @@ function start() {
       if (rootFolder === 'LK-M'){
         runCmdSync(`git checkout dev_z && git branch -m dev`)
       }
-      getCmdStr(repoMapObj[rootFolder]).split('\n').forEach(runCmdSync)
+      getCmdStr(repoMapObj[rootFolder]).split('\n')
+        .map(ele => ele.trim())
+        .filter(ele => Boolean(ele))
+        .forEach(runCmdSync)
       console.log('initial push successfully ')
     }
   }
