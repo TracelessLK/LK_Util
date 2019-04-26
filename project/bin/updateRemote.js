@@ -9,7 +9,7 @@ const repoMapObj = {
   'LK_M': 'https://github.com/TracelessLK/LK-M.git',
   'LK-C': 'https://github.com/TracelessLK/LK-C.git',
 }
-console.log('version: 0.0.1')
+console.log('version: 0.0.2')
 start()
 
 function start() {

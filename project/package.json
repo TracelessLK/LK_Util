@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build bin/initialPush.js bin/updateRemote.js --target=node --bundle-node-modules"
+    "build": "parcel build bin/initialPush.js --target=node --bundle-node-modules && parcel build bin/updateRemote.js --target=node --bundle-node-modules"
   },
   "keywords": [],
   "author": "",
