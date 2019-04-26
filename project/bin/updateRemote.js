@@ -9,7 +9,7 @@ const repoMapObj = {
   'LK_M': 'https://github.com/TracelessLK/LK-M.git',
   'LK-C': 'https://github.com/TracelessLK/LK-C.git',
 }
-console.log('version: 0.0.3')
+console.log('version: 0.0.4')
 start()
 
 function start() {
@@ -38,7 +38,7 @@ function start() {
             [
             'git remote rename origin origin-deprecated',
               `git remote add origin ${repoMapObj['LK-C']}`,
-              'git pull',
+              'git fetch --all',
               'git branch -u origin/dev dev',
               'git checkout dev',
               'git remote remove origin-deprecated'
