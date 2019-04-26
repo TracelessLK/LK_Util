@@ -13,7 +13,7 @@ start()
 
 function start() {
   const cwd = process.cwd()
-  const rootFolder = path.filename(cwd)
+  const rootFolder = path.basename(cwd)
 
   if (!repoMapObj.hasOwnProperty(rootFolder)) {
     throw new Error(`${rootFolder} is not in ${Object.keys(repoMapObj)}`)
