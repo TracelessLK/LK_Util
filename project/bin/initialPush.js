@@ -36,9 +36,9 @@ function start() {
           [
             'git remote rename origin origin-deprecated',
             `git remote add origin ${repoMapObj['LK-C']}`,
+            'git pull',
             'git branch -u origin/dev dev',
             'git checkout dev',
-            'git pull',
             'git remote remove origin-deprecated'
           ].forEach(ele => {
             runCmdSync(ele, {
