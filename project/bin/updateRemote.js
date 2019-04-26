@@ -34,7 +34,7 @@ function start() {
       if (['LK-M', 'LK-D', 'LK_M'].includes(rootFolder)) {
         const LK_C_path = path.resolve(cwd, 'submodule/LK-C')
         if(fs.existsSync(LK_C_path)) {
-          console.log('working on LK-C in submodule')
+          console.log('working on LK-C in submodule');
             [
             'git remote rename origin origin-deprecated',
               `git remote add origin ${repoMapObj['LK-C']}`,
