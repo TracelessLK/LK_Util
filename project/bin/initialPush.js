@@ -6,6 +6,7 @@ const repoMapObj = {
   'LK-S': 'https://github.com/TracelessLK/LK-S.git',
   'LK-D': 'https://github.com/TracelessLK/LK-D.git',
   'LK-M': 'https://github.com/TracelessLK/LK-M.git',
+  'LK_M': 'https://github.com/TracelessLK/LK-M.git',
   'LK-C': 'https://github.com/TracelessLK/LK-C.git',
 }
 console.log('version: 0.0.1')
@@ -22,7 +23,7 @@ function start() {
       throw new Error(`${cwd} is not a git repo`)
     } else {
       // LK-M has dev_z branch not dev
-      if (rootFolder === 'LK-M'){
+      if (['LK-M', 'LK_M'].includes(rootFolder)){
         runCmdSync(`git checkout dev_z && git branch -m dev`)
       }
       getCmdStr(repoMapObj[rootFolder]).split('\n')
@@ -30,7 +31,7 @@ function start() {
         .filter(ele => Boolean(ele))
         .forEach(runCmdSync)
       // process LK-C in submodule
-      if (['LK-M', 'LK-D'].includes(rootFolder)) {
+      if (['LK-M', 'LK-D', 'LK_M'].includes(rootFolder)) {
         const LK_C_path = path.resolve(cwd, 'submodule/LK-C')
         if(fs.existsSync(LK_C_path)) {
           [
