@@ -9,7 +9,7 @@ const repoMapObj = {
   'LK_M': 'https://github.com/TracelessLK/LK-M.git',
   'LK-C': 'https://github.com/TracelessLK/LK-C.git',
 }
-console.log('version: 0.0.7')
+console.log('version: 0.0.8')
 start()
 
 function start() {
@@ -27,7 +27,7 @@ function start() {
         runCmdSync(`git checkout dev_z && git branch -m dev`)
       }
       try {
-        runCmdSync('git remote remove origin origin-deprecated')
+        runCmdSync('git remote remove origin-deprecated')
       }catch(err){
 
       }
