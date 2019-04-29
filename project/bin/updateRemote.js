@@ -60,7 +60,7 @@ function start() {
           })
         }
       }
-      console.log('initial push successfully ')
+      console.log('update remote successfully ')
     }
   }
 }
