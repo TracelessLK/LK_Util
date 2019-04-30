@@ -39,7 +39,7 @@ and t1.projectId = t4.id
 ) t1
 left join  developer t2
 on t2.id = t1.checkerId
-order by t1.deadline, t1.priority;
+order by t1.deadline, t1.priority desc;
 
 
 create view assignmentView as
@@ -55,4 +55,4 @@ on
 t1.progressId = t3.id
 and t1.developerId = t2.id
 and t3.isFinished is null
-order by t3.deadline, t3.priority
+order by t3.deadline, t3.priority desc;
