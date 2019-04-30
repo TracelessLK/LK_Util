@@ -45,6 +45,7 @@ order by t1.deadline, t1.priority;
 create view assignmentView as
 select
 t2.name,
+t1.inCharge,
 t3.*
 from
 assignment t1
@@ -53,4 +54,5 @@ join progressView t3
 on
 t1.progressId = t3.id
 and t1.developerId = t2.id
+and t3.isFinished is null
 order by t3.deadline, t3.priority
